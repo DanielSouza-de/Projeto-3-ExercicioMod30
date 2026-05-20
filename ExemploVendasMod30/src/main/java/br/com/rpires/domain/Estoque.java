@@ -1,11 +1,24 @@
 package br.com.rpires.domain;
 
+import anotacao.ColunaTabela;
+import anotacao.Tabela;
+import anotacao.TipoChave;
 import br.com.rpires.dao.Persistente;
 
+@Tabela("TB_ESTOQUE")
 public class Estoque implements Persistente {
 
+	@ColunaTabela(dbName = "id", setJavaName = "setId")
 	private Long id;
+
+	@TipoChave("getId")
+	@ColunaTabela(dbName = "id", setJavaName = "setId")
+	private Long codigo;
+
+	@ColunaTabela(dbName = "codigo_produto", setJavaName = "setCodigoProduto")
 	private String codigoProduto;
+
+	@ColunaTabela(dbName = "quantidade", setJavaName = "setQuantidade")
 	private Integer quantidade;
 
 	@Override
@@ -16,6 +29,14 @@ public class Estoque implements Persistente {
 	@Override
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getCodigoProduto() {
