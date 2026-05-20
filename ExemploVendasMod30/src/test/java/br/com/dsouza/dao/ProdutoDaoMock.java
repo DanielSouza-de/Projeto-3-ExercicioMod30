@@ -1,0 +1,57 @@
+/**
+ * 
+ */
+package br.com.dsouza.dao;
+
+import java.util.Collection;
+
+import br.com.dsouza.dao.IProdutoDAO;
+import br.com.dsouza.domain.Produto;
+import br.com.dsouza.exceptions.TipoChaveNaoEncontradaException;
+
+/**
+ * @author rodrigo.pires
+ *
+ */
+public class ProdutoDaoMock implements IProdutoDAO {
+
+	@Override
+	public Boolean cadastrar(Produto entity) throws TipoChaveNaoEncontradaException {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public void excluir(String valor) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void alterar(Produto entity) throws TipoChaveNaoEncontradaException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Produto consultar(String valor) {
+
+		Produto produto = new Produto();
+
+		produto.setCodigo(valor);
+		produto.setNome("Produto 1");
+		produto.setDescricao("Produto 1");
+
+		// NOVO CAMPO
+		produto.setQuantidade(10);
+
+		return produto;
+	}
+
+	@Override
+	public Collection<Produto> buscarTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
