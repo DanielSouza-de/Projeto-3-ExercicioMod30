@@ -8,5 +8,10 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="ExemploVendasMod30/src/main/java"/>
 	<classpathentry kind="src" path="ExemploVendasMod30/src/test/java"/>
+	<classpathentry kind="lib" path="C:/Users/danie/Downloads/postgresql-42.7.10.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

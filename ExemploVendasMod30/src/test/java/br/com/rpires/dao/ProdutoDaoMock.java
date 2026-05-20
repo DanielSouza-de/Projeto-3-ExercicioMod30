@@ -34,8 +34,16 @@ public class ProdutoDaoMock implements IProdutoDAO {
 
 	@Override
 	public Produto consultar(String valor) {
+
 		Produto produto = new Produto();
+
 		produto.setCodigo(valor);
+		produto.setNome("Produto 1");
+		produto.setDescricao("Produto 1");
+
+		// NOVO CAMPO
+		produto.setQuantidade(10);
+
 		return produto;
 	}
 

@@ -27,8 +27,20 @@ public class ClienteDaoMock implements IClienteDAO {
 
 	@Override
 	public Cliente consultar(Long valor) {
+
 		Cliente cliente = new Cliente();
+
 		cliente.setCpf(valor);
+		cliente.setNome("Rodrigo");
+		cliente.setCidade("São Paulo");
+		cliente.setEnd("End");
+		cliente.setEstado("SP");
+		cliente.setNumero(10);
+		cliente.setTel(1199999999L);
+
+		// NOVO CAMPO
+		cliente.setEmail("rodrigo@email.com");
+
 		return cliente;
 	}
 

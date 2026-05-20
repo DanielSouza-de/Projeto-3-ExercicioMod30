@@ -21,18 +21,14 @@ import br.com.rpires.exceptions.MaisDeUmRegistroException;
 import br.com.rpires.exceptions.TableException;
 import br.com.rpires.exceptions.TipoChaveNaoEncontradaException;
 
-/**
- * @author Daniel
- *
- */
 public class EstoqueDAOTest {
-	
+
 	private IEstoqueDAO estoqueDao;
 
 	public EstoqueDAOTest() {
 		estoqueDao = new EstoqueDAO();
 	}
-	
+
 	@After
 	public void end() throws DAOException {
 
@@ -40,7 +36,7 @@ public class EstoqueDAOTest {
 
 		list.forEach(est -> {
 			try {
-				estoqueDao.excluir(est.getCodigoProduto());
+				estoqueDao.excluir(est.getId());
 			} catch (DAOException e) {
 				e.printStackTrace();
 			}
@@ -52,7 +48,7 @@ public class EstoqueDAOTest {
 
 		Estoque estoque = new Estoque();
 
-		estoque.setId(1L);
+		estoque.setId(System.currentTimeMillis());
 		estoque.setCodigoProduto(codigoProduto);
 		estoque.setQuantidade(100);
 
@@ -60,11 +56,11 @@ public class EstoqueDAOTest {
 
 		return estoque;
 	}
-	
-	private void excluir(String valor) throws DAOException {
+
+	private void excluir(Long valor) throws DAOException {
 		this.estoqueDao.excluir(valor);
 	}
-	
+
 	@Test
 	public void pesquisar()
 			throws MaisDeUmRegistroException,
@@ -77,7 +73,7 @@ public class EstoqueDAOTest {
 		Assert.assertNotNull(estoque);
 
 		Estoque estoqueDB =
-				this.estoqueDao.consultar(estoque.getCodigoProduto());
+				this.estoqueDao.consultar(estoque.getId());
 
 		Assert.assertNotNull(estoqueDB);
 
@@ -85,9 +81,9 @@ public class EstoqueDAOTest {
 				Integer.valueOf(100),
 				estoqueDB.getQuantidade());
 
-		excluir(estoqueDB.getCodigoProduto());
+		excluir(estoqueDB.getId());
 	}
-	
+
 	@Test
 	public void salvar()
 			throws TipoChaveNaoEncontradaException, DAOException {
@@ -100,9 +96,9 @@ public class EstoqueDAOTest {
 				Integer.valueOf(100),
 				estoque.getQuantidade());
 
-		excluir(estoque.getCodigoProduto());
+		excluir(estoque.getId());
 	}
-	
+
 	@Test
 	public void excluir()
 			throws DAOException,
@@ -114,14 +110,14 @@ public class EstoqueDAOTest {
 
 		Assert.assertNotNull(estoque);
 
-		excluir(estoque.getCodigoProduto());
+		excluir(estoque.getId());
 
 		Estoque estoqueBD =
-				this.estoqueDao.consultar(estoque.getCodigoProduto());
+				this.estoqueDao.consultar(estoque.getId());
 
 		assertNull(estoqueBD);
 	}
-	
+
 	@Test
 	public void alterarEstoque()
 			throws TipoChaveNaoEncontradaException,
@@ -136,22 +132,22 @@ public class EstoqueDAOTest {
 		estoqueDao.alterar(estoque);
 
 		Estoque estoqueBD =
-				this.estoqueDao.consultar(estoque.getCodigoProduto());
+				this.estoqueDao.consultar(estoque.getId());
 
 		assertNotNull(estoqueBD);
 
 		Assert.assertEquals(
 				Integer.valueOf(200),
 				estoqueBD.getQuantidade());
-		
-		excluir(estoque.getCodigoProduto());
+
+		excluir(estoque.getId());
 
 		Estoque estoqueBD1 =
-				this.estoqueDao.consultar(estoque.getCodigoProduto());
+				this.estoqueDao.consultar(estoque.getId());
 
 		assertNull(estoqueBD1);
 	}
-	
+
 	@Test
 	public void buscarTodos()
 			throws DAOException,
@@ -169,9 +165,9 @@ public class EstoqueDAOTest {
 
 			Assert.assertNotNull(est.getQuantidade());
 
-			excluir(est.getCodigoProduto());
+			excluir(est.getId());
 		}
-		
+
 		list = estoqueDao.buscarTodos();
 
 		assertTrue(list != null);
